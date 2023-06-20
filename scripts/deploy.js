@@ -6,7 +6,7 @@ async function main() {
 
   const contractAddresses = [];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     const tokenSwap = await TokenSwap.deploy(
       "0x778c2e4a20741869398a6722b41df2ec05ba0d75"
     );
