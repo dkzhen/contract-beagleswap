@@ -5,6 +5,9 @@ interface IERC20 {
     function transfer(address recipient, uint256 amount) external returns (bool);
     function balanceOf(address account) external view returns (uint256);
     function claimTokens() external;
+    function withdraw() external;
+
+
 }
 
 contract Nobyswap {
