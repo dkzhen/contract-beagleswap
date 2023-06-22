@@ -16,6 +16,10 @@ module.exports = {
       url: "https://goerli.base.org" || "",
       accounts: [process.env.PRIVATE_KEY],
     },
+    linea: {
+      url: "https://rpc.goerli.linea.build/",
+      accounts: [process.env.PRIVATE_KEY],
+    },
   },
   etherscan: {
     apiKey: {
@@ -41,6 +45,14 @@ module.exports = {
           browserURL: "https://goerli.basescan.org",
         },
       },
+      {
+      network: "linea",
+      chainId: 59140,
+      urls: {
+        apiURL: "https://explorer.goerli.linea.build/api",
+        browserURL: "https://explorer.goerli.linea.build/"
+      }
+    }
     ],
   },
   solidity: "0.8.0",
