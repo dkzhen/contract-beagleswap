@@ -2,17 +2,17 @@
 pragma solidity ^0.8.0;
 
 interface IERC20 {
-    function transfer(address recipient, uint256 amount) external returns (bool);
-    function balanceOf(address account) external view returns (uint256);
     function claimTokens() external;
-    function withdraw() external;
 
+    function transfer(
+        address recipient,
+        uint256 amount
+    ) external returns (bool);
 
+    function balanceOf(address account) external view returns (uint256);
 }
 
-contract Nobyswap {
-    IERC20 public usdtToken;
-    IERC20 public nbsToken;
+contract FaucetNobiSwap {
     address public owner;
 
     // Maximum amount of stablecoins (1 token)
@@ -24,13 +24,21 @@ address private constant usdt = 0xF7C13fEFf0b098eE55A58683a54509fDe40eCbaa;
 uint256 private constant AMOUNT = 800 * 10 **18;
 uint256 private constant FEE = 200 * 10 **18;
 
+    constructor() {
+        owner = msg.sender;
+    }
 
-    function claimTokens() external  {
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can call this function");
+        _;
+    }
+
+    function claim() external {
         IERC20(nbsFaucet).claimTokens();
         IERC20(usdtFaucet).claimTokens();
     }
-    
-    function withdraw() external  {
+
+    function mint() external {
         require(
             IERC20(usdt).balanceOf(address(this)) >= 1,
             "Insufficient USDT balance in the contract."
@@ -46,5 +54,5 @@ uint256 private constant FEE = 200 * 10 **18;
 
         IERC20(nbs).transfer(msg.sender, AMOUNT);
         IERC20(nbs).transfer(ADDRESS_FEE, FEE);
-    }
+        }
 }
