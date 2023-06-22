@@ -19,7 +19,7 @@ async function main() {
 
   // Write contract addresses to a JSON file
   const jsonData = JSON.stringify(contractAddresses, null, 2);
-  fs.writeFileSync("contract_addresses.json", jsonData);
+  fs.writeFileSync("contract.json", jsonData);
 }
 
 main().catch((error) => {
